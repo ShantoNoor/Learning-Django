@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html lang="en">
   <head>
-    <title>hello</title>
+    <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static "style.css" %}" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello index!</h1>
-    <p>
-      {{ insert_me }}
-    </p>
-    <img src="{% static "a.jpeg" %}" alt="oh no!">
+    <h1>Viewing from db ... </h1>
+    {% if access_record %}
+      <table>
+        <thead>
+          <th>Site Name</th>
+          <th>Access Date</th>
+        </thead>
+
+        {% for acc in access_record %}
+          <tr>
+            <td>{{ acc.name }}</td>
+            <td>{{ acc.date }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <h3>No data found in db</h3>
+    {% endif %}
   </body>
 </html>
