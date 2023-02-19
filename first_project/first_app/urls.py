@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index),
     re_path(r'^index2$', views.index2),
     path('form/', views.form_input),
+    path('webform/', views.web_form),
 ]

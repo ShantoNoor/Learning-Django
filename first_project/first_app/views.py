@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from first_app.models import AccessRecord
+from first_app.models import AccessRecord, Webpage
 from . import forms
 
 # Create your views here.
 
 def index(request):
     webpg_list = AccessRecord.objects.order_by('date')
-    data_dict = {'access_record': webpg_list}
+    webpgs = Webpage.objects.all()
+
+    data_dict = {'access_record': webpg_list, 'webpgs': webpgs}
+
     return render(request, 'first_app/index.html', context=data_dict)
 
 
@@ -32,4 +35,19 @@ def form_input(request):
             print(f'Text: {text}')
 
     return render(request, 'first_app/form.html', {'form': form})
+
+
+def web_form(request):
+    form = forms.WebFrom()
+
+    if request.method == 'POST':
+        form = forms.WebFrom(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print("From is not valid")
+
+    return render(request, 'first_app/web_form.html', {'form': form})
 
