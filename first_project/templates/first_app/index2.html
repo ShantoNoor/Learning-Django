@@ -10,7 +10,8 @@ Hello | Index 2
 {% block body_block %}
   <h1>Hello index!</h1>
   <p>
-    {{ insert_me }}
+    {% load my_filter %}
+    {{ insert_me|my_filter:'h'|title }}
   </p>
   <img src="{% static "a.jpeg" %}" alt="oh no!">
 {% endblock %}
