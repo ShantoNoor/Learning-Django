@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>
+      {% block title_block %}
+      {% endblock %}
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <dir class="nav">
+      <a href="{% url 'first_app:home' %}"><button>Home</button></a>
+      <a href="{% url 'first_app:index2' %}"><button>Index2</button></a>
+      <a href="{% url 'first_app:form' %}"><button>Form</button></a>
+      <a href="{% url 'first_app:webform' %}"><button>WebForm</button></a>
+      <a href="{% url 'admin:index' %}"><button>Admin</button></a>
+    </dir>
+    {% block body_block %}
+    {% endblock %}
+  </body>
+</html>

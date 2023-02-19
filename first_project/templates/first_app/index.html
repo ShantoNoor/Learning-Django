@@ -1,51 +1,50 @@
 <!DOCTYPE html>
+{% extends "first_app/base.html" %}
+
 {% load static %}
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static "style.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Viewing from db ... </h1>
-    {% if webpgs %}
-     <table>
-      <thead>
-        <th>Topic</th>
-        <th>Name</th>
-        <th>Urls</th>
-      </thead>
-      {% for pg in webpgs %}
+
+{% block title_block %}
+Hello
+{% endblock %}
+
+{% block body_block %}
+<h1>Viewing from db ... </h1>
+{% if webpgs %}
+ <table>
+  <thead>
+    <th>Topic</th>
+    <th>Name</th>
+    <th>Urls</th>
+  </thead>
+  {% for pg in webpgs %}
+  <tr>
+    <td>{{pg.topic}}</td>
+    <td>{{pg.name}}</td>
+    <td>{{pg.url}}</td>
+  </tr>
+  {% endfor %}
+ </table>
+{% else %}
+<h3>No webpages found in db</h3>
+{% endif %}
+
+<br><br>
+
+{% if access_record %}
+  <table>
+    <thead>
+      <th>Site Name</th>
+      <th>Access Date</th>
+    </thead>
+
+    {% for acc in access_record %}
       <tr>
-        <td>{{pg.topic}}</td>
-        <td>{{pg.name}}</td>
-        <td>{{pg.url}}</td>
+        <td>{{ acc.name }}</td>
+        <td>{{ acc.date }}</td>
       </tr>
-      {% endfor %}
-     </table>
-    {% else %}
-    <h3>No webpages found in db</h3>
-    {% endif %}
-
-    <br><br>
-
-    {% if access_record %}
-      <table>
-        <thead>
-          <th>Site Name</th>
-          <th>Access Date</th>
-        </thead>
-
-        {% for acc in access_record %}
-          <tr>
-            <td>{{ acc.name }}</td>
-            <td>{{ acc.date }}</td>
-          </tr>
-        {% endfor %}
-      </table>
-    {% else %}
-      <h3>No data found in db</h3>
-    {% endif %}
-  </body>
-</html>
+    {% endfor %}
+  </table>
+{% else %}
+  <h3>No data found in db</h3>
+{% endif %}
+{% endblock %}

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
+{% extends "first_app/base.html" %}
+
 {% load static %}
 
-<html lang="en">
-  <head>
-    <title>hello</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{% static "style.css" %}" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Hello index!</h1>
-    <p>
-      {{ insert_me }}
-    </p>
-    <img src="{% static "a.jpeg" %}" alt="oh no!">
-  </body>
-</html>
+{% block title_block %}
+Hello | Index 2
+{% endblock %}
+
+{% block body_block %}
+  <h1>Hello index!</h1>
+  <p>
+    {{ insert_me }}
+  </p>
+  <img src="{% static "a.jpeg" %}" alt="oh no!">
+{% endblock %}
